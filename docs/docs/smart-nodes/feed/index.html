@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Smart Nodes Archives - Document FSociety</title>
+	<atom:link href="https://fsociety/docs/docs/smart-nodes/feed/" rel="self" type="application/rss+xml" />
+	<link>https://fsociety/docs/docs/smart-nodes/</link>
+	<description>Best Document for FSociety</description>
+	<lastBuildDate>Wed, 05 Apr 2023 20:30:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2.2</generator>
+	<item>
+		<title>Smartnode Manual Setup</title>
+		<link>https://fsociety/docs/smartnode-manual-setup/</link>
+		
+		<dc:creator><![CDATA[superadmin]]></dc:creator>
+		<pubDate>Fri, 31 Mar 2023 21:36:52 +0000</pubDate>
+				<category><![CDATA[Smart Nodes]]></category>
+		<guid isPermaLink="false">https://fsociety/docs/?p=34</guid>
+
+					<description><![CDATA[<p>Getting Started With Your VPS For the following part of the guide you need to be root. depending on your VPS provider they may have...</p>
+<p>The post <a rel="nofollow" href="https://fsociety/docs/smartnode-manual-setup/">Smartnode Manual Setup</a> appeared first on <a rel="nofollow" href="https://docs.fsociety.com">Document FSociety</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Getting Started With Your VPS</strong></p>
+<p>For the following part of the guide you need to be root. depending on your VPS provider they may have only provided you with a “sudo” user. You can change to root by doing:</p>
+<p><strong>Update Server</strong></p>
+<pre class="copy-the-code-target">sudo su</pre>
+<pre class="copy-the-code-target">apt update &amp;&amp; apt upgrade -y
+apt install unzip fail2ban -y
+</pre>
+<p><strong>Add 4GB Swap</strong><br />
+First check to make sure there is not already swap active:</p>
+<pre>free -h</pre>
+<p>If no swap it will return:</p>
+<pre>Swap: 0B 0B 0B</pre>
+<p>Create SWAP and Activate:</p>
+<pre>dd if=/dev/zero of=/swapfile bs=1k count=4096k
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile swap swap auto 0 0" | tee -a /etc/fstab
+sysctl -w vm.swappiness=10
+echo vm.swappiness = 10 | tee -a /etc/sysctl.conf</pre>
+<p>&nbsp;</p>
+<p>Note: <em><strong>swappiness = 10</strong></em> tells system only to use swap if really needed.</p>
+<p>&nbsp;</p>
+<p><strong>Enable UFW &amp; Open Ports</strong></p>
+<pre>apt install ufw -y
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow ssh
+ufw allow 15277/tcp
+ufw enable</pre>
+<p>&nbsp;</p>
+<p><strong>Configure Fail2ban</strong></p>
+<p>Setup jail for bad guys hitting SSH, and set it to ban after three failed logins to SSH:</p>
+<pre>nano /etc/fail2ban/jail.local</pre>
+<p>Copy and paste the following into the file:</p>
+<pre>[sshd]
+enabled = true
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3</pre>
+<p>Save Configuration</p>
+<p>ctrl +x y then enter</p>
+<p>Reboot the server:</p>
+<pre>reboot</pre>
+<p>Add a system user to run fsocietyd:</p>
+<pre>adduser &lt;username_here&gt;</pre>
+<p>Note: Adjust wget command to match your Ubuntu version, example below is for Ubuntu 18.</p>
+<pre>wget https://github.com/fsocietychain/fsociety/releases/download/v0.0.1.01/fsociety-linux-0.0.1.01.zip
+unzip fsociety-linux-0.0.1.01.zip
+chmod +x ~/fsociety-build/fsocietyd
+chmod +x ~/fsociety-build/fsociety-cli
+chmod +x ~/fsociety-build/fsociety-tx
+mkdir ~/.fsocietycore &amp;&amp; touch ~/.fsocietycore/fsociety.conf
+cd .fsocietycore
+wget https://github.com/fsocietychain/fsociety/releases/download/v0.0.1.01/Bootstrap.zip
+unzip Bootstrap.zip
+rm Bootstrap.zip
+cd ..
+echo "daemon=1" &gt;&gt; ~/.fsocietycore/fsociety.conf
+~/fsociety-build/./fsocietyd
+echo all done!</pre>
+<p>You should see fsocietyd server starting. You can confirm it is running with:</p>
+<pre>top -c</pre>
+<p>It should be using a good amount of CPU. This shows you it is working, we will return to it later.</p>
+<p>&nbsp;</p>
+<p><strong>Local Setup</strong></p>
+<p>This part of the guide is to get your local wallet or control wallet setup. If you already have FSociety core wallet running you can skip to next section.</p>
+<p><strong>Download , Install &amp; Sync Local Wallet :</strong></p>
+<p>Download latest FSociety wallet at https://github.com/fsocietychain/fsociety/releases</p>
+<ul>
+<li>Start wallet and let it finish syncing.</li>
+<li>Encrypt wallet (Settings &gt; Encrypt Wallet)</li>
+<li>Create new receiving address</li>
+<li>Backup wallet.dat (File &gt; Backup Wallet). Store in multiple locations.</li>
+<li>Dump private key for receiving address (this should be printed and stored offline in multiple locations):</li>
+</ul>
+<pre>walletpassphrase password time (in seconds)</pre>
+<pre>dumpprivkey "address" (address is the receiving address you sent the 700,000 FSC to)</pre>
+<ul>
+<li>Send 700,000 FSC to self (this is current collateral amount)</li>
+<li>Wait to 2 confirmation</li>
+</ul>
+<p>The private key only allows you to restore the matching receiving address. If you setup multiple nodes you should dump the private key for each collateral receiving address.</p>
+<p>&nbsp;</p>
+<p>Build protx command for control wallet</p>
+<p>Here is an example protx quick_setup command:</p>
+<pre>protx quick_setup "ne935d771668fa640c56grt56ry8688b0f039f7b684e715d92e4012369fea6" "1" "194.113.73.87:15277" "FQ6HwVC54Vzku47L2Loae4fdPkYXEyqm5y"</pre>
+<p>The structure from left to right is:</p>
+<ul>
+<li><strong>Transaction ID:</strong> In your wallet go to “Transactions” right click the one you sent yourself earlier and “Copy Transaction ID”. Replace the Transaction ID in example.</li>
+<li><strong>Collateral index:</strong> Tools &gt; Debug console. Type smartnode outputs to check if 1 or 0. Adjust example command if needed.</li>
+<li><strong>Your smartnode server IP and port:</strong> Replace example IP with your Smartnode server IP, leave port as is.</li>
+<li><strong>Fee address:</strong> This is any address in your wallet which contains enough FSC to pay the fee. When you enter the protx quick_setup command it is a transaction and needs to be paid for. It is a very small amount 1/2 an FSC is more than enough. In Debug console do “listaddressbalances” to show all addresses with a balance, choose one and replace address in example command.</li>
+</ul>
+<p>Enter the protx quick_setup command in Debug console. This will create a .conf file for that node in the same directory you ran the wallet from. Open it and copy the contents.</p>
+<p><strong>Finish Smartnode Configuration (VPS):</strong></p>
+<pre>~./fsociety-cli stop</pre>
+<pre>nano ~/.fsocietycore/fsociety.conf</pre>
+<p>Paste in what you copied from the .conf file made during the protx command, save and exit (ctrl+x, y, enter).</p>
+<p>Start cointafd:</p>
+<pre>~/fsociety-build/./fsocietyd</pre>
+<p>Wait two minutes and do:</p>
+<pre>~/fsociety-build/./fsociety-cli smartnode status</pre>
+<p>This should return:</p>
+<pre>Ready Ready</pre>
+<p><em><strong>Your Smartnode should now be running!</strong></em></p>
+<p>&nbsp;</p>
+<p>z</p>
+<p>The post <a rel="nofollow" href="https://fsociety/docs/smartnode-manual-setup/">Smartnode Manual Setup</a> appeared first on <a rel="nofollow" href="https://docs.fsociety.com">Document FSociety</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Smartnode Requirements</title>
+		<link>https://fsociety/docs/smartnode-requirements/</link>
+		
+		<dc:creator><![CDATA[superadmin]]></dc:creator>
+		<pubDate>Thu, 30 Mar 2023 20:48:37 +0000</pubDate>
+				<category><![CDATA[Smart Nodes]]></category>
+		<guid isPermaLink="false">https://fsociety/docs/?p=31</guid>
+
+					<description><![CDATA[<p>Smartnodes require a collateral of 700,000 FSC for block 8580. This number does not change. Your collateral stays in your wallet at all times, and...</p>
+<p>The post <a rel="nofollow" href="https://fsociety/docs/smartnode-requirements/">Smartnode Requirements</a> appeared first on <a rel="nofollow" href="https://docs.fsociety.com">Document FSociety</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Smartnodes require a collateral of 700,000 FSC for block 8580. This number does not change. Your collateral stays in your wallet at all times, and as long as locked your Smartnode is valid. You can unlock the collateral at anytime, you are in full control of your FSC.</p>
+<p><strong>Hardware</strong><br />
+fsocietyd (fsocietycore daemon) is sensitive to performance issues, especially when it comes to CPU. It is recommended that the server you use for a FSociety Smartnode runs nothing else and has a minimum of two cores.</p>
+<p>CPU: 2 cores .<br />
+RAM: 4GB .<br />
+SWAP: 4GB .<br />
+Storage: 25GB (SSD is strongly recommended).<br />
+Note: The FSociety blockchain grows continuously so the 25GB will also grow over time, make sure to check your servers available disk space occasionally. Additionally, once Smartnodes start being used for Smart Contracts hardware requirements will increase significantly.</p>
+<p><strong>Software</strong><br />
+Recommended operating systems are Ubuntu 18.04, and Ubuntu 22.04. Other operating systems are possible but may result in unexpected behavior. You should always be using the latest mainnet release on your Smartnode.</p>
+<p><strong>Network</strong><br />
+Network connection of 100/mbit is strongly recommended, uptime is very important. Interruptions will mean your Smartnode gets “PoSe Banned” and you will stop receiving rewards until it is fixed.</p>
+<p>The post <a rel="nofollow" href="https://fsociety/docs/smartnode-requirements/">Smartnode Requirements</a> appeared first on <a rel="nofollow" href="https://docs.fsociety.com">Document FSociety</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
