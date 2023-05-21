@@ -395,10 +395,6 @@ chmod +x ~/fsociety-build/fsociety-cli
 chmod +x ~/fsociety-build/fsociety-tx
 mkdir ~/.fsocietycore &amp;&amp; touch ~/.fsocietycore/fsociety.conf
 cd .fsocietycore
-wget https://github.com/fsocietychain/fsociety/releases/download/v0.0.1.01/Bootstrap.zip
-unzip Bootstrap.zip
-rm Bootstrap.zip
-cd ..
 echo "daemon=1" &gt;&gt; ~/.fsocietycore/fsociety.conf
 ~/fsociety-build/./fsocietyd
 echo all done!</pre>
