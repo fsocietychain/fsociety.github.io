@@ -1,6 +1,10 @@
 {
-    "name": "",
-    "short_name": "",
+"name": "Fsociety FSC",
+  "short_name": "Fsociety FSC",
+  "description": "Fsociety $FSC: The revolutionary cryptocurrency of the people",
+  "categories": ["business", "finance"],
+  "scope": "/",
+  "start_url": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
