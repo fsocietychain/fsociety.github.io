@@ -187,9 +187,9 @@ nav.left {
 	overflow: hidden;
 	background:url( assets/images/particle-header.jpg) bottom center no-repeat;
 	background: #fff;
-	background: -moz-linear-gradient(top, #fff 50%, #f26722 100%);
-	background: -webkit-linear-gradient(top, #fff 50%, #f26722 100%);
-	background: linear-gradient(to bottom, #fff 50%, #f26722 100%);
+	background: -moz-linear-gradient(top, #fff 50%, #2e2e2e 100%);
+	background: -webkit-linear-gradient(top, #fff 50%, #2e2e2e 100%);
+	background: linear-gradient(to bottom, #fff 50%, #2e2e2e 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#100c14', endColorstr='#531c30', GradientType=0);
 
 }
