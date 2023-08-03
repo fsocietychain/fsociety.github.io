@@ -185,12 +185,6 @@ nav.left {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	background:url( assets/images/particle-header.jpg) bottom center no-repeat;
-	background: #fff;
-	background: -moz-linear-gradient(top, #fff 50%, #2e2e2e 100%);
-	background: -webkit-linear-gradient(top, #fff 50%, #2e2e2e 100%);
-	background: linear-gradient(to bottom, #fff 50%, #2e2e2e 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#100c14', endColorstr='#531c30', GradientType=0);
 }
 /* 
 #particles {
@@ -212,14 +206,13 @@ nav.left {
 	padding: 0 20px;
 	width: 100%;
 	text-align: center;
-	font-size: 30px;
+	font-size: 20px;
 	line-height: 30px;
 	color: #2e2e2e;
 }
 #intro p {
-	margin-top: 20px;
+	margin-top: 10px;
 }
-
 @media screen and (max-width: 660px) {
 
 	#intro {
@@ -823,7 +816,7 @@ footer .sm img {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 10%;
     top: 0;
     margin: auto;
 }
@@ -833,7 +826,7 @@ footer .sm img {
     overflow: hidden;
     height: 100%;
     bottom: -1px;
-    background-image: linear-gradient(to top, #f26722 20%, #ffffff 80%);
+    background-image: linear-gradient(to top, #f26722 10%, #ffffff 90%);
 }
 .bgTop {
     z-index: 15;
