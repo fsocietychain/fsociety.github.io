@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+body {
+    font-family: 'Muli', sans-serif;
+    background-color: #bdd2db;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    color: rgba(0, 0, 0, 0.918);
+    line-height: 1.4;
+    letter-spacing: -.003em;
+    font-size: 20px;
+    padding: 20px;
+    
+}
+
+.fa-brands {
+  font-size: 25px;
+  padding: 10px;
+  color: rgba(35, 68, 153, 0.918);
+}
+
+.social {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  font-size: 50;
+}
+
+.donation-container {
+    width: 100%;
+    min-width: 100px;
+    background: #d4eaf7; 
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px #000;
+    border-radius: 5px;
+}
+
+h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 50px;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h2 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 30px;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 0px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.header {
+    width: 100%;
+    max-width: 800px;
+    background: #d4eaf7; 
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom:10px ;
+    padding-top: 10px ;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px #000;
+    border-radius: 5px;
+
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 20px;
+    box-shadow: 0px 0px 4px 0px #000;
+}
+
+.progress-bar {
+    height: 30px;
+    width: 0;
+    background-color: #234499;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+
+.explorer {
+    background-color: #56e7b0;
+    text-align: center;
+    line-height: 30px;
+    color: rgb(0, 0, 0);
+    min-width: 50% ;
+    width: 150px;
+    margin:auto;
+    box-shadow: 0px 0px 4px 0px #000;
+    border-radius: 5px;
+}
+
+.twitter {
+  background: url("data:image/svg+xml;base64,[data]");
+}
+
+.explorer:hover {
+    background-color: #2bbb84;
+}
+
+.address-container {
+    margin-top: 20px;
+}
+
+input[type="text"]
+{
+    font-size:16px;
+    background-color: #b1cfe0; 
+    border-radius: 5px;
+    color: rgb(48, 7, 48);
+    border: 2px solid #031c35;
+    box-sizing: border-box;
+    width: 400px;
+}
+
+.button {
+    transition-duration: 0s;
+    border-radius: 4px;
+    background-color: #b1cfe0; 
+    color: rgb(37, 3, 37);
+  }
+  
+.button:hover {
+    background-color: #76818d; 
+    color: rgb(220, 225, 236);
+  }
+
+.address-input {
+    margin-top: 10px;
+}
+
+.info {
+    padding-bottom: 20px;
+    margin-right: 10px;
+}
+
+input {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+}
+
+.main-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+
+.small-container {
+    font-family: 'Muli', sans-serif;
+    background-color: #b1cfe0;
+    max-width: 50%;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1;
+    letter-spacing: -.003em;
+    font-size: 16px;
+    padding: 10px;
+    margin: auto;
+    text-align: left;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+
+  }
+  
+  .intro, .qr-code {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: auto;
+    margin-top:40px;
+    max-width: 60%;
+  }
+  
+  .qr-code img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  @media (max-width: 800px) {
+    .donation-container, .header, .small-container, .address-container  {
+        
+        width: 100%;
+        max-width: 90%;
+      }
+}
+
+  @media (max-width: 800px) {
+        body  {
+            padding: 0px;
+          }
+}
+
+@media (max-width: 600px) {
+  h1  {
+      font-size: 10vw;
+    }
+}
+
+@media (max-width: 600px) {
+  h2  {
+    font-size: 9vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .address-container, .address-input  {
+        width: 100%;
+      }
+}
+
+@media (max-width: 800px) {
+  input[type="text"] {
+   font-size:14px;
+   border: 2px solid #35032e;
+   box-sizing: border-box;
+   width:80%;
+    }
+}
+
+.end
+ {
+    text-align: center;
+    padding-top: 20px;
+}
