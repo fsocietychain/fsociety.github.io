@@ -870,3 +870,31 @@ footer .sm img {
 .waveAnimation .waveBottom {
     animation: move_wave 15s linear infinite;
 }
+
+
+<style>
+.button1 {border-radius: 2px;}
+.button2 {border-radius: 4px;}
+.button3 {border-radius: 8px;}
+.button31 {border-radius: 8px 0% 0% 8px;}
+.button4 {border-radius: 12px;}
+.button5 {border-radius: 50%;}
+</style>
+
+     <style>
+       .image{
+         animation:none;
+       }
+       .image:hover {
+         position: absolute;
+         left: 50%;
+         width: 100px;
+         height: 100px;
+         -webkit-animation:spin 1.5s linear infinite;
+         -moz-animation:spin 1.5s linear infinite;
+         animation:spin 1.5s linear infinite;
+       }
+       @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+       @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+       @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+     </style>
