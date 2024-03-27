@@ -266,6 +266,7 @@ h1 span {
 #about {
 	background: #18121b;
 	color: #fff;
+		text-align: center;
 }
 #about .content {
 	border: 1px solid #fff;
